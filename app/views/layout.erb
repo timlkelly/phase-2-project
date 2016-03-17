@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+ <link rel="stylesheet" href="/css/normalize.css">
+ <link rel="stylesheet" href="/css/application.css">
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+ <script type="text/javascript" src="/js/application.js"></script>
+
+  <title></title>
+</head>
+<body>
+
+  <header>
+    <nav class="main-nav-bar">
+    <img src="http://55.media.tumblr.com/tumblr_m7wuuqe4Aq1r17mw1.gif">
+      <ul>
+        <% if !logged_in? %>
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/users/new">Register</a></li>
+        <% else %>
+          <li><a href="/">Home</a></li>
+          <li><a href="/logout">logout</a></li>
+          <li><a href="/users/show">Profile</a></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="body-container">
+    <%= yield %>
+  </div>
+</body>
+</html>

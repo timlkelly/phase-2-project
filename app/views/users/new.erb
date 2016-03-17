@@ -1,0 +1,18 @@
+<div class="tbacontainer">
+
+  <% if @errors %>
+    <ul class="errors">
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <form method="post" action="/users/show">
+    <input id="Name" type="text" name="user[name]" placeholder="Name">
+    <input id="Email" type="text" name="user[email]" placeholder="Email">
+    <input id="Password" type="password" name="user[password]" placeholder="password">
+
+    <input type="submit" value="Create">
+  </form>
+</div>
