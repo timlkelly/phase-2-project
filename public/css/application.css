@@ -1,0 +1,57 @@
+/* Built-in element Styling */
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+header {
+  margin-bottom:100px;
+}
+
+
+/* Custom Styling */
+
+.main-nav-bar {
+  position:fixed;
+  top:0;
+  width:100%;
+  background-color:black;
+}
+
+/* Needs vertical alignment */
+.main-nav-bar img {
+  float:left;
+  margin-left:50px;
+  /*vertical-align:center;*/
+}
+
+.main-nav-bar ul {
+  list-style-type: none;
+  float:right;  
+  margin-right:50px;
+}
+
+.main-nav-bar li {
+  display:inline;
+  padding-left:20px;
+}
+
+.main-nav-bar a {
+  text-decoration: none;
+  color:white;
+}
+
+.main-nav-bar a:hover {
+  color:purple;
+}
+
+.body-container {
+  max-width:800px;
+  margin:0 auto;
+  border:1px dotted black;
+}
+
