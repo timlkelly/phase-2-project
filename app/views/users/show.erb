@@ -9,7 +9,7 @@
     <% @user.saved_locations.each do |saved_location| %>
 
     <div class="location">
-      <p><%= saved_location.name %></p>
+      <p> <a href="/locations/<%= saved_location.id %>"><%= saved_location.name %></a> </p>
       <p>Lat: <%= saved_location.location.latitude %></p>
       <p>Long: <%= saved_location.location.longitude %></p>
     </div>
