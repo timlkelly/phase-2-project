@@ -1,0 +1,8 @@
+<p><a href="/locations/<%= saved_location.id %>"><%= saved_location.name %></a></p>
+<p>Lat: <%= saved_location.location.latitude %></p>
+<p>Long: <%= saved_location.location.longitude %></p>
+
+<form method="post" action="/locations/<%= saved_location.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete" class="button">
+</form>

@@ -1,23 +1,25 @@
-<div class="form-container">
+<div class="body-container">
+  <div class="form-container">
 
-  <% if @errors %>
-    <ul class="errors">
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  <% end %>
+    <% if @errors %>
+      <ul class="errors">
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-  <h3>Log-in</h3>
+    <h3>Log-in</h3>
 
-  <form method="post" action="/login">
-    <label for="email">E-mail Address:</label>
-    <input id="email" type="text" name="email" placeholder="AStark@winterfell.com">
+    <form method="post" action="/login">
+      <label for="email">E-mail Address:</label>
+      <input id="email" type="text" name="email" placeholder="AStark@winterfell.com">
 
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password" placeholder="ValarMorghulis">
+      <label for="password">Password:</label>
+      <input id="password" type="password" name="password" placeholder="ValarMorghulis">
 
-    <input type="submit" value="Log in!">
-  </form>
+      <input type="submit" value="Log in!">
+    </form>
 
+  </div>
 </div>
