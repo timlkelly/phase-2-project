@@ -1,5 +1,9 @@
 /* Built-in element Styling */
 
+* {
+  box-sizing: border-box;
+}
+
 h1 {
 
 }
@@ -19,14 +23,13 @@ header {
   position:fixed;
   top:0;
   width:100%;
-  background-color:black;
+  background-color:#add8e6;
 }
 
 /* Needs vertical alignment */
 .main-nav-bar img {
   float:left;
   margin-left:50px;
-  /*vertical-align:center;*/
 }
 
 .main-nav-bar ul {
@@ -46,12 +49,24 @@ header {
 }
 
 .main-nav-bar a:hover {
-  color:purple;
+  color:black;
 }
 
 .body-container {
   max-width:800px;
   margin:0 auto;
-  border:1px dotted black;
 }
 
+.form-container {
+  display:block;
+  margin:0 auto;
+  max-width:500px;
+  padding:50px;
+}
+
+.form-container input {
+  display:block;
+  margin-bottom:10px;
+  padding:5px;
+  width:100%;
+}

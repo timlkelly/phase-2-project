@@ -17,7 +17,6 @@
 
   <header>
     <nav class="main-nav-bar">
-    <img src="http://55.media.tumblr.com/tumblr_m7wuuqe4Aq1r17mw1.gif">
       <ul>
         <% if !logged_in? %>
           <li><a href="/">Home</a></li>
@@ -25,8 +24,8 @@
           <li><a href="/users/new">Register</a></li>
         <% else %>
           <li><a href="/">Home</a></li>
-          <li><a href="/logout">logout</a></li>
-          <li><a href="/users/show">Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+          <li><a href="/users">Profile</a></li>
         <% end %>
       </ul>
     </nav>

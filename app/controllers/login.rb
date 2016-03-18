@@ -6,7 +6,7 @@ post '/login' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    redirect '/users/show'
+    redirect '/'
   else
     @errors = ["Incorrect Email/Password"]
     erb :'/login/index'

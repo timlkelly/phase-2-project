@@ -1,4 +1,4 @@
-<div class="tbacontainer">
+<div class="form-container">
 
   <% if @errors %>
     <ul class="errors">
@@ -8,11 +8,22 @@
     </ul>
   <% end %>
 
-  <form method="post" action="/users/show">
-    <input id="Name" type="text" name="user[name]" placeholder="Name">
-    <input id="Email" type="text" name="user[email]" placeholder="Email">
-    <input id="Password" type="password" name="user[password]" placeholder="password">
+  <h3>Register</h3>
 
-    <input type="submit" value="Create">
+  <form method="post" action="/users">
+    <label for="first_name">First Name:</label>
+    <input id="first_name" type="text" name="first_name" placeholder="Arya">
+
+    <label for="last_name">Last Name:</label>
+    <input id="last_name" type="text" name="last_name" placeholder="Stark">
+
+    <label for="email">E-mail Address:</label>
+    <input id="email" type="text" name="email" placeholder="AStark@winterfell.com">
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" placeholder="ValarMorghulis">
+
+    <input type="submit" value="Join">
   </form>
+
 </div>
