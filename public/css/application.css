@@ -13,9 +13,8 @@ h2 {
 }
 
 header {
-  margin-bottom:100px;
+  height: 50px;
 }
-
 
 /* Custom Styling */
 
@@ -52,6 +51,13 @@ header {
   color:black;
 }
 
+.background-image {
+  height: 400px;
+  margin: 0;
+  background-image: url('../images/chicago_bg.jpg');
+  background-size: cover;
+}
+
 .body-container {
   max-width:800px;
   margin:0 auto;
@@ -69,4 +75,50 @@ header {
   margin-bottom:10px;
   padding:5px;
   width:100%;
+}
+
+.location-list {
+/*  max-width: 800px;
+  margin: 0 auto;*/
+}
+
+.location {
+  display: inline-block;
+  /*border: 1px solid black;*/
+  padding: 5px;
+  background-color: #add8e6;
+  border-radius: 10px;
+  width: 175px;
+}
+
+.location a {
+  font-size: large; 
+}
+
+.location ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.location .button {
+  background:none;
+  border:none;
+  padding:0;  
+  font:inherit;
+  border-bottom:1px;
+  cursor:pointer;
+  color:blue;
+  text-decoration: underline;
+}
+
+.add-location {
+
+}
+
+.add-location form {
+  /*display: block;*/
+}
+
+.hidden {
+  display: none;
 }

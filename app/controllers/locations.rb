@@ -10,6 +10,10 @@ get '/locations/:id' do
   erb :'/locations/show'
 end
 
+get '/locations/new' do
+
+end
+
 post '/locations' do
   new_location = Location.find_or_create_by(params[:loc])
 

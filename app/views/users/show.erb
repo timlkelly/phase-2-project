@@ -1,51 +1,33 @@
-<h1><%= @user.first_name %>'s Profile</h1>
+<div class="body-container">
+  <h1><%= @user.first_name %>'s Profile</h1>
 
+  <div class="location-list">
+    <h2>Saved locations</h2>
 
-<div class="">
+    <% if @user.saved_locations.length > 0 %>
+      <% @user.saved_locations.each do |saved_location| %>
 
-  <h2>Saved locations</h2>
-
-  <% if @user.saved_locations.length > 0 %>
-    <% @user.saved_locations.each do |saved_location| %>
-
-    <div class="location">
-      <p> <a href="/locations/<%= saved_location.id %>"><%= saved_location.name %></a> </p>
-      <p>Lat: <%= saved_location.location.latitude %></p>
-      <p>Long: <%= saved_location.location.longitude %></p>
-
-      <form method="post" action="/locations/<%= saved_location.id %>">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="delete" class="button">
-      </form>
-
-
-<!--       <div class="saved-conditions-container">
-        <form method="get" action="/locations/<%= saved_location.id %>">
-          <input type="hidden" name="latitude" value="<%= saved_location.location.latitude %>">
-          <input type="hidden" name="longitude" value="<%= saved_location.location.longitude %>">
-          <input type="submit" value="Check current conditions" class="saved-check-conditions">
+      <div class="location">
+        <p>
+          <a href="/locations/<%= saved_location.id %>"><%= saved_location.name %></a>
+          <ul>
+            <li>Latitude: <%= saved_location.location.latitude %></li>
+            <li>Longitude: <%= saved_location.location.longitude %></li>
+          </ul>
+        </p>
+        <form method="post" action="/locations/<%= saved_location.id %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="delete" class="button">
         </form>
-      </div> -->
-
-    </div>
-
+      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
+  <div class="add-location">
+    <a href=""><h2>Add a location</h2></a>
+    <div class="hidden">
+      <%= erb :'/users/_add_location', layout: false %>
+    </div>
+  </div>
 </div>
-
-<div>
-  <h2>Add a location</h2>
-  <form method="post" action="/locations">
-    <input name="new_saved_location[name]" type="text" placeholder="Name">
-    <input name="loc[latitude]" type="text" placeholder="Latitude">
-    <input name="loc[longitude]" type="text" placeholder="Longitude">
-
-    <input type="submit" value="Save Location!">
-  </form>
-
-
-  <!-- Placeholder for a partial form to add a location -->
-
-</div>
-
