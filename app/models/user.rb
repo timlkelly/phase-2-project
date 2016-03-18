@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def validate_password
-    if @plaintext_password == nil 
+    if @plaintext_password == nil
       self.errors.add(:password, "must exist")
     elsif @plaintext_password.length < 8
       self.errors.add(:password, "must be at least 8 characters long")
@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
     #   self.errors.add(:password, "must be at least 8 characters long")
     # end
 
+
+
   end
-  
+
 end

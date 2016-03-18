@@ -4,6 +4,31 @@ get '/locations/:id' do
   lat = @saved_location.location.latitude.to_s
   url = "http://api.breezometer.com/baqi/?lat=" + lat + "&lon=" + long + "&key=56f593e1971d4690b3b16b3523f9c7b4"
 
+  # months = [1,2,3,4,5,6,7,8,9,10,11,12]
+  # historic_urls = []
+
+  # months.each do |month|
+  #   historic_urls << "http://api.breezometer.com/baqi/?datetime=" + year.to_s + "-01-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4"
+  # end
+
+
+  url_array = ["http://api.breezometer.com/baqi/?datetime=2016-03-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2016-02-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2016-01-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2015-12-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2015-11-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2015-10-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2015-09-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4",
+  "http://api.breezometer.com/baqi/?datetime=2015-08-01T12:00:00&lat=" + lat + "&lon=" + long + "&fields=breezometer_aqi,breezometer_color&key=56f593e1971d4690b3b16b3523f9c7b4"]
+
+  @historic_data = []
+  url_array.each do |url|
+    full_response =  HTTParty.get(url)
+    @historic_data << [full_response.parsed_response["breezometer_aqi"], full_response.parsed_response["breezometer_color"]]
+  end
+
+  @historic_data.reverse!
+
   # HTTParty::Basement.default_options.update(verify: false) # Use this if http request include ssl
   api_response = HTTParty.get(url)
 
