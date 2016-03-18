@@ -7,12 +7,15 @@
 
 <!--  Display API data   -->
 
-<!-- https://api.breezometer.com/baqi/?lat=40.7324296&lon=-73.9977264
+<!--56f593e1971d4690b3b16b3523f9c7b4 -->
 
-https://api.breezometer.com/baqi/?lat=40.7324296&lon=73.9977264&key=56f593e1971d4690b3b16b3523f9c7b4
+<% if !logged_in? %>
+  <a href="/login/index">Log in to save this location</a>
+<% else %>
+  <form method="post" action="/locations">
+    <input id="" type="hidden" value="">
+    <input id="" type="hidden" value="">
 
-<<<<<<< HEAD
-56f593e1971d4690b3b16b3523f9c7b4 -->
-=======
-56f593e1971d4690b3b16b3523f9c7b4 -->
->>>>>>> master
+    <input type="submit" value="Save Location!"
+  </form>
+<% end %>

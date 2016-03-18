@@ -13,6 +13,11 @@
       <p>Lat: <%= saved_location.location.latitude %></p>
       <p>Long: <%= saved_location.location.longitude %></p>
 
+      <form method="post" action="/locations/<%= saved_location.id %>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="delete" class="button">
+      </form>
+
 
 <!--       <div class="saved-conditions-container">
         <form method="get" action="/locations/<%= saved_location.id %>">
@@ -31,6 +36,14 @@
 
 <div>
   <h2>Add a location</h2>
+  <form method="post" action="/locations">
+    <input name="new_saved_location[name]" type="text" placeholder="Name">
+    <input name="loc[latitude]" type="text" placeholder="Latitude">
+    <input name="loc[longitude]" type="text" placeholder="Longitude">
+
+    <input type="submit" value="Save Location!">
+  </form>
+
 
   <!-- Placeholder for a partial form to add a location -->
 
