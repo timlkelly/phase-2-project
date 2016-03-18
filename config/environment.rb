@@ -18,6 +18,7 @@ require 'logger'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
+require 'httparty'
 require 'erb'
 require 'bcrypt'
 require 'faker'
