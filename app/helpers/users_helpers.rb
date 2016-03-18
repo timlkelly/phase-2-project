@@ -15,4 +15,8 @@ helpers do
     end
   end
 
+  # def already_saved?
+  #   return true if current_user.saved_locations == location.
+  # end
+
 end

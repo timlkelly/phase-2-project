@@ -1,114 +1,164 @@
-<h1>Air Quality Conditions for "<%= @saved_location.name %>"</h1>
-<h3>Location:</h3>
-<p>Lat: <%= @saved_location.location.latitude %></p>
-<p>Long: <%= @saved_location.location.longitude %></p>
+<div class="body-container">
+
+  <h1>Air Quality Conditions for "<%= @saved_location.name %>"</h1>
+  <h3>Location:</h3>
+  <p>Lat: <%= @saved_location.location.latitude %></p>
+  <p>Long: <%= @saved_location.location.longitude %></p>
 
 
 
-<!--  Display API data   -->
+  <!--  Display API data   -->
 
-<!--56f593e1971d4690b3b16b3523f9c7b4 -->
+  <!--56f593e1971d4690b3b16b3523f9c7b4 -->
 
-<!-- Add logic to check whether user already has the save dlocation -->
-<% if !logged_in? %>
-  <a href="/login/index">Log in to save this location</a>
-<% else %>
-  <form method="post" action="/locations">
-    <input id="" type="hidden" value="">
-    <input id="" type="hidden" value="">
+  <!-- Add logic to check whether user already has the save dlocation -->
+  <% if !logged_in? %>
+    <a href="/login/index">Log in to save this location</a>
+  <% else %>
+    <form method="post" action="/locations">
+      <input id="" type="hidden" value="">
+      <input id="" type="hidden" value="">
+      <input type="submit" value="Save Location!">
+    </form>
+  <% end %>
 
-    <input type="submit" value="Save Location!">
-  </form>
-<% end %>
 
+  <div class="display-data">
 
-<div class="display-data">
+    <div class="todays-data">
+      <h3>Today's Air Quality Index:</h3>
+      <p><%= @aq_data["aqi_description"] %></p>
+      <p>Dominant pollutant: <%= @aq_data["dom_poll"] %></p>
+    </div>
 
-  <div class="todays-data">
-    <h3>Today's Air Quality Index:</h3>
-    <p><%= @aq_data["aqi_description"] %></p>
-    <p>Dominant pollutant: <%= @aq_data["dom_poll"] %></p>
+    <div class="historical-data">
+      <h3>Historical Air Quality Information by Month:</h3>
+    </div>
+
   </div>
-
-  <div class="historical-data">
-    <h3>Historical Air Quality Information:</h3>
-  </div>
-
 </div>
 
 <script>
 
-  var dataset = <%= @aq_data_json %>
-  var aqi_data = [dataset["aqi"]]
-  var aqi_color = [dataset["aqi_color"]]
+  // TODAY'S DATA
 
+    //Width and height
+    var w = 20;
+    var h = 100;
+    var barPadding = 1;
 
-  //Width and height
-  var w = 20;
-  var h = 100;
-  var barPadding = 1;
+    //Data
+    var dataset = <%= @aq_data_json %>
+    var aqi_data = [dataset["aqi"]]
+    var aqi_color = [dataset["aqi_color"]]
 
-  //Data
+    //Create SVG element
+    var svg = d3.select(".todays-data")
+          .append("svg")
+          .attr("width", w)
+          .attr("height", h)
+          .attr("margin-left", "50px");
 
-  //Create SVG element
-  var svg = d3.select(".todays-data")
-        .append("svg")
-        .attr("width", w)
-        .attr("height", h)
-        .attr("margin-left", "50px");
+    svg.selectAll("rect")
+       .data(aqi_data)
+       .enter()
+       .append("rect")
+       .attr("x", function(d, i) {
+          return i * (w / aqi_data.length);
+       })
+       .attr("y", function(d) {
+          return h - (d);
+       })
+       .attr("width", w / aqi_data.length - barPadding)
+       .attr("height", function(d) {
+          return d;
+       })
+       .attr("fill", aqi_color);
 
-  svg.selectAll("rect")
-     .data(aqi_data)
-     .enter()
-     .append("rect")
-     .attr("x", function(d, i) {
-        return i * (w / aqi_data.length);
-     })
-     .attr("y", function(d) {
-        return h - (d);
-     })
-     .attr("width", w / aqi_data.length - barPadding)
-     .attr("height", function(d) {
-        return d;
-     })
-     .attr("fill", aqi_color);
+    svg.selectAll("text")
+       .data(aqi_data)
+       .enter()
+       .append("text")
+       .text(function(d) {
+          return d;
+       })
+       .attr("text-anchor", "middle")
+       .attr("x", function(d, i) {
+          return i * (w / aqi_data.length) + (w / aqi_data.length - barPadding) / 2;
+       })
+       .attr("y", function(d) {
+          return h - (d) + 14;
+       })
+       .attr("font-family", "sans-serif")
+       .attr("font-size", "11px")
+       .attr("fill", "black");
 
-  svg.selectAll("text")
-     .data(aqi_data)
-     .enter()
-     .append("text")
-     .text(function(d) {
-        return d;
-     })
-     .attr("text-anchor", "middle")
-     .attr("x", function(d, i) {
-        return i * (w / aqi_data.length) + (w / aqi_data.length - barPadding) / 2;
-     })
-     .attr("y", function(d) {
-        return h - (d) + 14;
-     })
-     .attr("font-family", "sans-serif")
-     .attr("font-size", "11px")
-     .attr("fill", "white");
+  // HISTORICAL DATA
+
+    //Width and height
+    var hist_w = 300;
+    // var hist_h = 100;
+    var barPadding = 1;
+
+    //Data
+    var historicData = <%= @historic_data %>
+    // var aqi_data = [dataset["aqi"]]
+    // var aqi_color = [dataset["aqi_color"]]
+
+    //Create SVG element
+    var histSvg = d3.select(".historical-data")
+          .append("svg")
+          .attr("width", hist_w)
+          .attr("height", h)
+          .attr("margin-left", "50px");
+
+    histSvg.selectAll("rect")
+       .data(historicData)
+       .enter()
+       .append("rect")
+       .attr("x", function(d, i) {
+          return i * (hist_w / historicData.length);
+       })
+       .attr("y", function(d) {
+          return h - (d[0]);
+       })
+       .attr("width", hist_w / historicData.length - barPadding)
+       .attr("height", function(d) {
+          return d[0];
+       })
+       .attr("fill", function(d, i) {
+          return d[1];
+       })
+       .on("mouseover", function() {
+            d3.select(this)
+              .attr("fill", "gray");
+       })
+       .on("mouseout", function(d) {
+           d3.select(this)
+              .transition()
+              .duration(250)
+              .attr("fill", function(d, i) {
+                return d[1];
+        })
+     });
+
+    histSvg.selectAll("text")
+       .data(historicData)
+       .enter()
+       .append("text")
+       .text(function(d) {
+          return d[0];
+       })
+       .attr("text-anchor", "middle")
+       .attr("x", function(d, i) {
+          return i * (hist_w / historicData.length) + (hist_w / historicData.length - barPadding) / 2;
+       })
+       .attr("y", function(d) {
+          return h - (d[0]) + 14;
+       })
+       .attr("font-family", "sans-serif")
+       .attr("font-size", "11px")
+       .attr("fill", "black");
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
