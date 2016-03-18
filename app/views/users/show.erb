@@ -1,0 +1,29 @@
+<h1><%= @user.first_name %>'s Profile</h1>
+
+
+<div class="">
+
+  <h2>Saved locations</h2>
+
+  <% if @user.saved_locations.length > 0 %>
+    <% @user.saved_locations.each do |saved_location| %>
+
+    <div class="location">
+      <p><%= saved_location.name %></p>
+      <p>Lat: <%= saved_location.location.latitude %></p>
+      <p>Long: <%= saved_location.location.longitude %></p>
+    </div>
+
+    <% end %>
+  <% end %>
+
+
+</div>
+
+<div>
+  <h2>Add a location</h2>
+
+  <!-- Placeholder for a partial form to add a location -->
+
+</div>
+
